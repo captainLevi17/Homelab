@@ -1,0 +1,54 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Page-1" id="DXJgpyVl_E1lOejjWgi-">
+    <mxGraphModel dx="1406" dy="788" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#121212)" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-7" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VUUZDbVCF5eUspdCRE9y-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-10" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="VUUZDbVCF5eUspdCRE9y-8">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-11" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="VUUZDbVCF5eUspdCRE9y-9">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-1" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" value="&lt;div&gt;&lt;span style=&quot;color: rgb(29, 37, 41); font-family: Arial, Verdana, Geneva, sans-serif; font-size: 14px; text-align: start; white-space: normal; background-color: light-dark(#ffffff, var(--ge-dark-color, #121212));&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="410" y="350" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-2" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_N_128x128.png" value="Starlink Router&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="710" y="280" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-3" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="endArrow=none;html=1;rounded=0;exitX=0.975;exitY=0.388;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="VUUZDbVCF5eUspdCRE9y-2" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="550" y="390" as="sourcePoint" />
+            <mxPoint x="600" y="340" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-4" connectable="0" parent="VUUZDbVCF5eUspdCRE9y-3" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Passthrough" vertex="1">
+          <mxGeometry relative="1" x="0.167" y="2" as="geometry">
+            <mxPoint x="-1" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-5" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Network:&lt;br&gt;IPV4: 192.168.0.0/24&lt;div&gt;IPV6:&amp;nbsp;2406:2D40:4647:7300::/64&lt;/div&gt;" vertex="1">
+          <mxGeometry height="150" width="270" x="20" y="210" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-6" parent="1" style="shape=mxgraph.signs.tech.computer;html=1;pointerEvents=1;fillColor=#000000;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;" value="gaming-mlsg&lt;br&gt;IPV4: 192.168.0.135" vertex="1">
+          <mxGeometry height="98" width="98" x="652" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-8" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" value="proxmox1-mlsg&lt;div&gt;IPV4: 192.168.0.99&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="70" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-9" parent="1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/Elastic_SAN.svg;" value="nas-mlsg&lt;div&gt;IPV4: 192.168.0.3&lt;/div&gt;" vertex="1">
+          <mxGeometry height="68" width="68" x="380" y="570" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-12" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;white-space: nowrap; background-color: rgb(255, 255, 255);&quot;&gt;TP-Link BE3600&lt;/span&gt;&lt;br style=&quot;white-space: nowrap;&quot;&gt;&lt;span style=&quot;white-space: nowrap; background-color: rgb(255, 255, 255);&quot;&gt;IPV4 (LAN): 192.168.0.1/24&lt;/span&gt;&lt;br style=&quot;white-space: nowrap;&quot;&gt;&lt;span style=&quot;white-space: nowrap; background-color: rgb(255, 255, 255);&quot;&gt;IPV6 (WAN): &lt;/span&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(29, 37, 41); font-family: Arial, Verdana, Geneva, sans-serif; font-size: 14px; text-align: start;&quot;&gt;2406:2D40:4000:C88C:6A7F:F0FF:FE0F:CD65/64&lt;/span&gt;&lt;div style=&quot;white-space: nowrap;&quot;&gt;&lt;span style=&quot;color: rgb(29, 37, 41); font-family: Arial, Verdana, Geneva, sans-serif; font-size: 14px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);&quot;&gt;IPV6(LAN): &lt;/span&gt;&lt;span style=&quot;color: rgb(29, 37, 41); font-family: Arial, Verdana, Geneva, sans-serif; font-size: 14px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);&quot;&gt;2406:2D40:4647:7300:6A7F:F0FF:FE0F:CD64/64&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(29, 37, 41); font-family: Arial, Verdana, Geneva, sans-serif; font-size: 14px; text-align: start; white-space: normal; background-color: rgb(255, 255, 255);&quot;&gt;&lt;br&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="30" width="120" x="350" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;b&gt;MLSG&#39;s Home Network Topology&lt;/b&gt;" vertex="1">
+          <mxGeometry height="60" width="280" x="10" y="20" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
