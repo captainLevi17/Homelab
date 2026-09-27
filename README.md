@@ -260,7 +260,6 @@ Additional documentation can be added under `docs/` as the homelab evolves.
 
 Future documentation:
 
-* `architecutre/overview.md` - System Design 
 * `infrastructure/network.md` - Network topology, subnets and VLANs
 * `infrastructure/proxmox.md` - VMs, containers and Proxmox configuration
 * `infrastructure/storage.md` - Virtualization 
