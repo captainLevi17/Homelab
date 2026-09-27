@@ -260,12 +260,14 @@ Additional documentation can be added under `docs/` as the homelab evolves.
 
 Future documentation:
 
-* `network.md` — Network topology, subnets and VLANs
-* `proxmox.md` — VMs, containers and Proxmox configuration
-* `services.md` — Application and service inventory
-* `dns.md` — Technitium DNS configuration
-* `reverse-proxy.md` — Nginx Proxy Manager configuration
-* `tailscale.md` — Tailscale configuration
-* `cloudflare.md` — DNS and DNS-01 configuration
-* `opnsense.md` — Lab firewall/router configuration
-* `backups.md` — Backup strategy and recovery procedures
+* `architecutre/overview.md` - System Design 
+* `infrastructure/network.md` - Network topology, subnets and VLANs
+* `infrastructure/proxmox.md` - VMs, containers and Proxmox configuration
+* `infrastructure/storage.md` - Virtualization 
+* `services.md` - Application and service inventory
+* `networking/dns.md` - Technitium DNS configuration
+* `networking/tailscale.md` - Tailscale configuration
+* `networking/opnsense.md` - Lab firewall/router configuration
+* `reverse-proxy.md` - Nginx Proxy Manager configuration
+* `cloudflare.md` - DNS and DNS-01 configuration
+* `backups.md` - Backup strategy and recovery procedures
