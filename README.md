@@ -101,21 +101,20 @@ The lab is used for:
 
 ## DNS and Domain
 
-I own the **`mlsg.net`** domain, which is used for both public-facing services and internal homelab services.
 
 **Cloudflare** manages the domain's DNS.
 
-Public-facing services use subdomains of `mlsg.net`, while internal services use the `.local.mlsg.net` namespace.
+Public-facing services use subdomains of `.example.net`, while internal services use the `.local.example.net` namespace.
 
 For example:
 
-```text
+```
 Public:
-jellyfin.mlsg.net
+jellyfin.example.net
 
 Internal:
-technitium01.local.mlsg.net
-sab.local.mlsg.net
+technitium01.local.example.net
+sab.local.example.net
 ```
 
 This provides a consistent naming scheme while distinguishing internal services from public-facing services.
