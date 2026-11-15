@@ -8,18 +8,11 @@ The environment provides media services, self-hosted applications, DNS, reverse 
 
 ## Architecture
 
-The homelab uses **Starlink** for internet connectivity, with a **TP-Link BE3600 Wi-Fi 7 router** providing the primary home network.
+The physical network uses **Starlink** for internet connectivity. The Starlink router is in passthrough mode and connects to OPNsense on the **Dell OptiPlex 9020**, which provides routing and firewalling for the home network.
 
-The router connects directly to:
+OPNsense connects to an **HP ProCurve 2910al** switch. The switch connects the workstation, **MyCloudPR4100 NAS**, and **Dell OptiPlex 7040** running Proxmox. A **TP-Link BE3600** operates in access point mode and provides Wi-Fi; it is not the network's router.
 
-* Desktop PC
-* MyCloudPR4100 NAS
-* Dell OptiPlex 7040 running Proxmox
-* Dell OptiPlex 9020 running OPNsense
-
-The **OptiPlex 9020** provides a separate Lab Network through OPNsense, an HP ProCurve switch, and an HP ProCurve access point.
-
-The **OptiPlex 7040** runs Proxmox and hosts the majority of the homelab services.
+The physical topology is documented in [the draw.io diagram](diagrams/MLSG_home_network.drawio). The diagram shows one switched home network.
 
 An **Oracle Cloud Always Free** instance provides public ingress for selected services. **Tailscale** provides private connectivity between the Oracle Cloud environment and services hosted within the home network.
 
@@ -44,6 +37,7 @@ The **Dell OptiPlex 7040** runs Proxmox VE and acts as the primary virtualizatio
 | Web Server             | Self-hosted applications    |
 | Nginx Proxy Manager    | Internal reverse proxy      |
 | Technitium DNS         | Internal DNS                |
+| Zabbix                 | Network Monitoring          |
 | Other VMs / containers | Testing and experimentation |
 
 ---
@@ -75,27 +69,9 @@ Primary storage workloads include:
 
 ---
 
-## Lab Network
+## Network and Experimentation
 
-The Lab Network provides an isolated environment for networking experimentation and testing.
-
-### Hardware
-
-* Dell OptiPlex 9020
-* OPNsense
-* HP ProCurve switch
-* HP ProCurve access point
-
-OPNsense provides routing and firewalling for the Lab Network, while the ProCurve switch and access point provide wired and wireless connectivity.
-
-The lab is used for:
-
-* Firewall experimentation
-* Routing
-* VLANs
-* Network service testing
-* Lab environments
-* Infrastructure learning
+OPNsense on the Dell OptiPlex 9020 is the network gateway and firewall. The HP ProCurve 2910al provides wired switching, and the TP-Link BE3600 provides wireless access in AP mode.
 
 ---
 
@@ -104,17 +80,17 @@ The lab is used for:
 
 **Cloudflare** manages the domain's DNS.
 
-Public-facing services use subdomains of `.example.net`, while internal services use the `.local.example.net` namespace.
+Public-facing services use subdomains of `mlsg.net`, while internal services use the `local.mlsg.net` namespace.
 
 For example:
 
 ```
 Public:
-jellyfin.example.net
+jellyfin.mlsg.net
 
 Internal:
-technitium01.local.example.net
-sab.local.example.net
+jellyfin.local.mlsg.net
+sab.local.mlsg.net
 ```
 
 This provides a consistent naming scheme while distinguishing internal services from public-facing services.
@@ -123,11 +99,11 @@ This provides a consistent naming scheme while distinguishing internal services 
 
 ## HTTPS / TLS
 
-Services use **Let's Encrypt** certificates managed through Nginx Proxy Manager.
+Internal services use a **Let's Encrypt wildcard certificate** for `*.local.mlsg.net`, managed by the internal Nginx Proxy Manager instance.
 
-Certificate issuance uses the **Cloudflare DNS-01 challenge**, allowing certificates to be issued without requiring internal services to be publicly accessible.
+Nginx Proxy Manager uses the **Cloudflare DNS-01 challenge** to prove control of the domain when requesting or renewing the certificate. Cloudflare handles DNS validation; the certificate is issued by Let's Encrypt and presented by the internal reverse proxy. This does not require internal services to be publicly accessible or their traffic to pass through Cloudflare.
 
-This provides trusted HTTPS for both internal and public-facing services.
+Public-facing services use certificates configured on the public Nginx Proxy Manager instance.
 
 ---
 
@@ -139,7 +115,7 @@ There are two **Nginx Proxy Manager** instances.
 
 The local NPM instance runs within Proxmox and handles reverse proxying and HTTPS for internal services.
 
-Internal DNS resolves `.local.mlsg.net` hostnames to the local infrastructure, allowing clients to access services using their normal HTTPS hostnames.
+Internal DNS resolves `*.local.mlsg.net` service hostnames to the local infrastructure. The internal NPM presents the wildcard certificate so clients can access those services over HTTPS.
 
 ### Public NPM
 
@@ -182,11 +158,11 @@ Cloudflare provides:
 
 * DNS hosting for `mlsg.net`
 * Public DNS records
-* DNS-01 validation for Let's Encrypt certificates
+* DNS-01 validation for the Let's Encrypt wildcard certificate used by internal services
 
-Public service traffic can therefore use the following general flow:
+Cloudflare DNS directs public service hostnames to Oracle Cloud NPM. Requests then follow this general path:
 
-**Client → Cloudflare → Oracle Cloud NPM → Tailscale → Home Service**
+**Client → Oracle Cloud NPM → Tailscale → Home Service**
 
 Internal services use the local `.local.mlsg.net` namespace and are handled by the internal Nginx Proxy Manager instance.
 
@@ -197,14 +173,14 @@ Internal services use the local `.local.mlsg.net` namespace and are handled by t
 | Component           | Role                         |
 | ------------------- | ---------------------------- |
 | Starlink            | Internet connectivity        |
-| TP-Link BE3600      | Primary home router          |
+| TP-Link BE3600      | Wi-Fi access point            |
 | MyCloudPR4100       | NAS / network storage        |
 | Dell OptiPlex 7040  | Proxmox virtualization       |
-| Dell OptiPlex 9020  | OPNsense lab router/firewall |
-| HP ProCurve Switch  | Lab switching                |
-| HP ProCurve AP      | Lab wireless                 |
+| Dell OptiPlex 9020  | OPNsense router/firewall      |
+| HP ProCurve 2910al  | Network switching             |
 | Proxmox VE          | Application hosting          |
 | Technitium DNS      | Internal DNS                 |
+| Zabbix              | Network and endpoint monitoring |
 | Nginx Proxy Manager | Reverse proxy / HTTPS        |
 | Let's Encrypt       | TLS certificates             |
 | Cloudflare          | DNS / DNS-01 validation      |
@@ -237,26 +213,25 @@ Tailscale provides the private connection between cloud infrastructure and selec
 Infrastructure is divided by responsibility:
 
 * **Starlink** → Internet
-* **TP-Link** → Home networking
+* **OPNsense** → Routing and firewalling
+* **ProCurve** → Wired switching
+* **TP-Link** → Wi-Fi access point
 * **Proxmox** → Compute
 * **NAS** → Storage
-* **OPNsense** → Lab routing and firewalling
-* **ProCurve** → Lab switching and wireless
 * **Technitium** → DNS
 * **Nginx Proxy Manager** → Reverse proxy and HTTPS
 * **Cloudflare** → DNS and certificate validation
 * **Tailscale** → Private connectivity
 * **Oracle Cloud** → Public ingress
 
-### Experimentation
-
-The dedicated Lab Network provides a safe environment for experimenting with networking, routing, VLANs, firewalls, and other infrastructure without making the primary home network the testing environment.
 
 ---
 
 ## Documentation
 
 Additional documentation can be added under `docs/` as the homelab evolves.
+
+See [Reverse Proxy](docs/reverse-proxy.md) for the current internal and public NPM request flows and certificate handling.
 
 Future documentation:
 
@@ -267,6 +242,5 @@ Future documentation:
 * `networking/dns.md` - Technitium DNS configuration
 * `networking/tailscale.md` - Tailscale configuration
 * `networking/opnsense.md` - Lab firewall/router configuration
-* `reverse-proxy.md` - Nginx Proxy Manager configuration
 * `cloudflare.md` - DNS and DNS-01 configuration
 * `backups.md` - Backup strategy and recovery procedures

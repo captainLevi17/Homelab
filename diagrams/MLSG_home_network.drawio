@@ -1,41 +1,18 @@
 <mxfile host="Electron">
   <diagram name="Page-1" id="DXJgpyVl_E1lOejjWgi-">
-    <mxGraphModel dx="2054" dy="1200" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#121212)" math="0" shadow="0">
+    <mxGraphModel dx="1664" dy="1035" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" background="light-dark(#FFFFFF,#121212)" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
         <mxCell id="s5YajSJkRR10spNsQw8g-7" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;" value="" vertex="1">
           <mxGeometry height="800" width="800" x="14" y="185" as="geometry" />
         </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-20" parent="1" style="whiteSpace=wrap;html=1;aspect=fixed;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;" value="" vertex="1">
-          <mxGeometry height="378" width="378" x="430" y="552" as="geometry" />
-        </mxCell>
-        <mxCell id="VUUZDbVCF5eUspdCRE9y-7" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;" target="VUUZDbVCF5eUspdCRE9y-6">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-1" connectable="0" parent="VUUZDbVCF5eUspdCRE9y-7" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" value="Text" vertex="1">
-          <mxGeometry relative="1" x="-0.6673" y="-1" as="geometry">
-            <mxPoint as="offset" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="VUUZDbVCF5eUspdCRE9y-10" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;startArrow=none;startFill=0;endArrow=none;endFill=0;" target="VUUZDbVCF5eUspdCRE9y-8">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VUUZDbVCF5eUspdCRE9y-11" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;startArrow=none;startFill=0;endArrow=none;endFill=0;" target="VUUZDbVCF5eUspdCRE9y-9">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-2" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" target="DLgw-GedqVfw57u53Q5_-1">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-        <mxCell id="VUUZDbVCF5eUspdCRE9y-1" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" value="&lt;div style=&quot;text-align: start;&quot;&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); font-size: 14px; text-wrap-mode: wrap; color: light-dark(rgb(201, 208, 211), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Arial, Verdana, Geneva, sans-serif&quot;&gt;TP-Link Wireless Router&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="80" x="400" y="330" as="geometry" />
-        </mxCell>
         <mxCell id="VUUZDbVCF5eUspdCRE9y-2" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_N_128x128.png" value="Starlink Router&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
           <mxGeometry height="80" width="80" x="590" y="210" as="geometry" />
         </mxCell>
-        <mxCell id="VUUZDbVCF5eUspdCRE9y-3" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-1" style="endArrow=none;html=1;rounded=0;exitX=0.975;exitY=0.388;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="VUUZDbVCF5eUspdCRE9y-2" value="">
+        <mxCell id="VUUZDbVCF5eUspdCRE9y-3" edge="1" parent="1" source="a7o7BBGHe4pjzpMCmAtW-1" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="VUUZDbVCF5eUspdCRE9y-2" value="">
           <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="550" y="390" as="sourcePoint" />
+            <mxPoint x="488" y="341.03999999999996" as="sourcePoint" />
             <mxPoint x="600" y="340" as="targetPoint" />
           </mxGeometry>
         </mxCell>
@@ -45,13 +22,16 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="VUUZDbVCF5eUspdCRE9y-6" parent="1" style="shape=mxgraph.signs.tech.computer;html=1;pointerEvents=1;fillColor=#000000;strokeColor=none;verticalLabelPosition=bottom;verticalAlign=top;align=center;" value="Workstation" vertex="1">
-          <mxGeometry height="98" width="98" x="302" y="552" as="geometry" />
+          <mxGeometry height="98" width="98" x="150" y="585" as="geometry" />
+        </mxCell>
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-11" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;" target="a7o7BBGHe4pjzpMCmAtW-4">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
         <mxCell id="VUUZDbVCF5eUspdCRE9y-8" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" value="Proxmox Node 1" vertex="1">
-          <mxGeometry height="80" width="80" x="30" y="570" as="geometry" />
+          <mxGeometry height="80" width="80" x="60" y="310" as="geometry" />
         </mxCell>
         <mxCell id="VUUZDbVCF5eUspdCRE9y-9" parent="1" style="image;aspect=fixed;html=1;points=[];align=center;fontSize=12;image=img/lib/azure2/other/Elastic_SAN.svg;" value="MYCLOUD PR4100 NAS" vertex="1">
-          <mxGeometry height="68" width="68" x="180" y="570" as="geometry" />
+          <mxGeometry height="68" width="68" x="60" y="460" as="geometry" />
         </mxCell>
         <mxCell id="VUUZDbVCF5eUspdCRE9y-14" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="&lt;span style=&quot;font-size: 40px;&quot;&gt;&lt;b&gt;MLSG&#39;s Homelab Architecture&lt;/b&gt;&lt;/span&gt;" vertex="1">
           <mxGeometry height="140" width="650" x="10" y="20" as="geometry" />
@@ -65,38 +45,30 @@
         <mxCell id="s5YajSJkRR10spNsQw8g-4" parent="1" style="image;aspect=fixed;perimeter=ellipsePerimeter;html=1;align=center;shadow=0;dashed=0;spacingTop=3;image=img/lib/active_directory/internet_cloud.svg;" value="Internet" vertex="1">
           <mxGeometry height="31.5" width="50" x="680" y="80" as="geometry" />
         </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-10" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Switch_128x128.png" value="HP Procurve Switch" vertex="1">
-          <mxGeometry height="80" width="80" x="590" y="724.6" as="geometry" />
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-1" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" value="&lt;div&gt;OPNSense&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="400" y="320" as="geometry" />
         </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-13" parent="1" style="image;points=[];aspect=fixed;html=1;align=center;shadow=0;dashed=0;image=img/lib/allied_telesis/wireless/Access_Point_Indoor.svg;" value="HP Procurve AP" vertex="1">
-          <mxGeometry height="54.6" width="36.6" x="493.4" y="750" as="geometry" />
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-2" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Wireless_Router_128x128.png" value="&lt;div style=&quot;text-align: start;&quot;&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); font-size: 14px; text-wrap-mode: wrap; color: light-dark(rgb(201, 208, 211), rgb(255, 255, 255));&quot;&gt;&lt;font face=&quot;Arial, Verdana, Geneva, sans-serif&quot;&gt;TP-Link BE3600 Router (AP mode)&lt;/font&gt;&lt;/span&gt;&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="400" y="480" as="geometry" />
         </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-17" edge="1" parent="1" source="s5YajSJkRR10spNsQw8g-10" style="endArrow=none;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" target="DLgw-GedqVfw57u53Q5_-1" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="590" y="740" as="sourcePoint" />
-            <mxPoint x="640" y="690" as="targetPoint" />
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-5" edge="1" parent="1" source="a7o7BBGHe4pjzpMCmAtW-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="a7o7BBGHe4pjzpMCmAtW-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-4" parent="1" style="image;html=1;image=img/lib/clip_art/networking/Switch_128x128.png;align=right;" value="&lt;blockquote style=&quot;margin: 0 0 0 40px; border: none; padding: 0px;&quot;&gt;&lt;div style=&quot;text-align: justify;&quot;&gt;&lt;span style=&quot;background-color: light-dark(#ffffff, var(--ge-dark-color, #121212)); color: light-dark(rgb(0, 0, 0), rgb(255, 255, 255));&quot;&gt;HP Procurve 2910al&lt;/span&gt;&lt;/div&gt;&lt;/blockquote&gt;" vertex="1">
+          <mxGeometry height="80" width="80" x="290" y="360" as="geometry" />
+        </mxCell>
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-12" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.013;entryY=0.125;entryDx=0;entryDy=0;entryPerimeter=0;" target="a7o7BBGHe4pjzpMCmAtW-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-13" edge="1" parent="1" source="VUUZDbVCF5eUspdCRE9y-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.013;entryY=0.425;entryDx=0;entryDy=0;entryPerimeter=0;" target="a7o7BBGHe4pjzpMCmAtW-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="240" y="394" />
+            </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="DLgw-GedqVfw57u53Q5_-1" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" value="&lt;div&gt;OPNSense&lt;/div&gt;" vertex="1">
-          <mxGeometry height="80" width="80" x="530" y="570" as="geometry" />
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-19" edge="1" parent="1" source="s5YajSJkRR10spNsQw8g-13" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="s5YajSJkRR10spNsQw8g-10" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="470" y="810" as="sourcePoint" />
-            <mxPoint x="530" y="750" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-21" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;rounded=0;" value="Testing and Learning Environment" vertex="1">
-          <mxGeometry height="30" width="110" x="460" y="690" as="geometry" />
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-22" parent="1" style="image;html=1;image=img/lib/clip_art/computers/Server_128x128.png" value="Proxmox Node 2" vertex="1">
-          <mxGeometry height="80" width="80" x="700" y="638" as="geometry" />
-        </mxCell>
-        <mxCell id="s5YajSJkRR10spNsQw8g-25" edge="1" parent="1" source="s5YajSJkRR10spNsQw8g-10" style="endArrow=none;html=1;rounded=0;entryX=0;entryY=0.75;entryDx=0;entryDy=0;" target="s5YajSJkRR10spNsQw8g-22" value="">
-          <mxGeometry height="50" relative="1" width="50" as="geometry">
-            <mxPoint x="630" y="730" as="sourcePoint" />
-            <mxPoint x="680" y="680" as="targetPoint" />
-          </mxGeometry>
+        <mxCell id="a7o7BBGHe4pjzpMCmAtW-15" edge="1" parent="1" source="a7o7BBGHe4pjzpMCmAtW-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.988;entryY=0.838;entryDx=0;entryDy=0;entryPerimeter=0;" target="a7o7BBGHe4pjzpMCmAtW-4">
+          <mxGeometry relative="1" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>

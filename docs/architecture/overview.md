@@ -2,9 +2,7 @@
 
 ## Purpose
 
-This document describes the overall architecture of the homelab, including the relationship between the home network, lab network, virtualization infrastructure, storage, cloud infrastructure, and externally accessible services.
-
-The goal of the architecture is to provide a local-first environment for self-hosting services, infrastructure experimentation, networking, and learning while keeping the primary home network isolated from lab experimentation.
+This document describes the current home network, virtualization and storage infrastructure, and cloud ingress for externally accessible services. 
 
 ---
 
@@ -12,40 +10,20 @@ The goal of the architecture is to provide a local-first environment for self-ho
 
 The homelab consists of several major components:
 
-* **Home Network** — Primary network for personal devices and local connectivity.
-* **Lab Network** — Isolated environment for networking and infrastructure experimentation.
+* **Home Network** — Current switched network for personal devices and local connectivity.
+* **Network Edge** — Starlink internet connection, OPNsense routing/firewalling, wired switching, and Wi-Fi access.
 * **Proxmox Infrastructure** — Primary compute and virtualization platform.
 * **NAS Storage** — Centralized storage for media, application data, downloads, and backups.
-* **Cloud Infrastructure (Oracle NGINX Proxy Manager Instance)** — Provides public ingress for selected services.
-* **Private Connectivity (Tailscale)** — Provides secure connectivity between cloud infrastructure and selected services hosted at home.
-* **DNS and Reverse Proxying (Technitium & Local NPM instance)** — Provides service discovery, HTTPS, and traffic routing.
+* **Cloud Infrastructure (Oracle Cloud NPM)** — Provides public ingress for selected services.
+* **Private Connectivity (Tailscale)** — Connects the cloud proxy to selected services hosted at home.
+* **DNS and Reverse Proxying (Technitium and two NPM instances)** — Provides internal name resolution, TLS, and host-based routing.
+* **Monitoring (Zabbix)** — Monitors network infrastructure and endpoints.
 
-At a high level, the architecture can be represented as:
+Internal request: client -> internal DNS -> internal NPM -> home service
+Public DNS:       Cloudflare DNS resolves hostname to Oracle Cloud NPM
+Public request:   client -> Oracle Cloud NPM -> Tailscale -> selected home service
 
-```
-                         Internet
-                            │
-                        DNS / CDN
-                            │
-                     Cloud Infrastructure
-                            │
-                       Reverse Proxy
-                            │
-                     Private Network
-                        Connectivity
-                            │
-                     ┌──────▼──────┐
-                     │ Home Network │
-                     └──────┬──────┘
-                            │
-                 ┌──────────┴──────────┐
-                 │                     │
-             Proxmox                  NAS
-                 │
-          ┌──────┴──────┐
-          │             │
-       Services       Testing
-```
+Cloudflare provides public DNS and DNS-01 certificate validation.
 
 ---
 
@@ -57,25 +35,13 @@ The primary home network provides connectivity for normal household devices and 
 
 **Primary responsibilities:**
 
-* Internet connectivity
+* Internet connectivity through Starlink and OPNsense
 * Local device connectivity
 * Access to homelab services
-* Connectivity to the virtualization and storage infrastructure
+* Connectivity to the virtualization and storage infrastructure through the HP ProCurve switch
 
-### Lab Network
 
-The Lab Network is separated from the primary home network and is used for experimentation.
-
-It provides an environment for:
-
-* Firewall experimentation
-* Routing
-* VLAN configuration
-* Network service testing
-* Infrastructure experimentation
-* Learning and testing potentially disruptive configurations
-
-The lab environment is managed by OPNsense and dedicated switching and wireless infrastructure.
+The HP ProCurve 2910al provides wired switching, and the TP-Link BE3600 provides Wi-Fi in AP mode. 
 
 ---
 
@@ -90,6 +56,8 @@ The virtualization host runs a combination of virtual machines and containers fo
 * Development and testing
 * Infrastructure services
 * Experimental workloads
+
+Zabbix runs as a VM on Proxmox and monitors network infrastructure and endpoints.
 
 The virtualization layer allows individual workloads to be isolated while sharing the available physical hardware.
 
@@ -134,13 +102,13 @@ DNS is separated into public and internal responsibilities.
 
 ### Public DNS
 
-Public DNS records are managed through the external DNS provider (Cloudflare in my case)  and are used for services that need to be reachable from the Internet.
+Cloudflare manages public DNS records for `mlsg.net`. Public service hostnames resolve to the Oracle Cloud NPM instance.
 
 ### Internal DNS
 
-Internal services use a separate namespace that resolves to local infrastructure.
+Internal services use the `local.mlsg.net` namespace. Internal DNS resolves these names to the internal NPM instance on the home network.
 
-This allows internal services to use consistent hostnames while keeping their traffic within the home network.
+This allows internal services to use consistent hostnames while keeping their requests on the home network.
 
 ---
 
@@ -150,19 +118,15 @@ Reverse proxying is divided between internal and public infrastructure.
 
 ### Internal Reverse Proxy
 
-The internal reverse proxy handles services that are intended to remain accessible only from the home network.
+The internal NPM instance runs within Proxmox and handles services intended for internal access. Internal DNS resolves service hostnames under `local.mlsg.net` to this proxy, which routes requests to the matching home service.
 
-It provides:
-
-* HTTPS
-* Host-based routing
-* Internal service access
+It presents a Let's Encrypt wildcard certificate for `*.local.mlsg.net`. NPM uses the Cloudflare DNS-01 challenge to request or renew the certificate. Cloudflare validates domain control but does not carry the normal internal service traffic.
 
 ### Public Reverse Proxy
 
-A reverse proxy hosted in the cloud (Oracle) acts as the public ingress point for selected services.
+The public NPM instance runs on Oracle Cloud and acts as the public ingress point for selected home-hosted services. Public DNS is managed through Cloudflare.
 
-Requests are forwarded through the private connectivity layer (Tailscale VPN) to services hosted within the home network.
+Requests are forwarded through Tailscale to services hosted within the home network.
 
 This allows selected services to remain hosted locally without requiring direct inbound access to the home network.
 
@@ -172,16 +136,13 @@ See [`reverse-proxy.md`](../reverse-proxy.md) for more information.
 
 ## Public Traffic Flow
 
-For services exposed to the Internet, traffic follows this general path:
+For services exposed to the internet, Cloudflare DNS resolves the public hostname to the Oracle Cloud NPM endpoint. The request then follows this path:
 
 ```
 Internet Client
       │
       ▼
-Public DNS / Cloudflare
-      │
-      ▼
-Cloud Reverse Proxy
+Oracle Cloud NPM
       │
       ▼
 Tailscale VPN
@@ -193,13 +154,13 @@ Home Network
 Internal Service
 ```
 
-The home-hosted service does not need to accept direct inbound connections from the Internet.
+DNS resolution points the hostname to Oracle Cloud NPM. The home-hosted service does not need to accept direct inbound connections from the internet.
 
 ---
 
 ## Internal Traffic Flow
 
-Internal services follow a separate path:
+Internal service requests follow a separate path:
 
 ```
 Internal Client
@@ -214,7 +175,7 @@ Internal Reverse Proxy
 Homelab Service
 ```
 
-This allows internal services to use HTTPS and consistent hostnames without routing internal traffic through the public infrastructure.
+The internal NPM presents the wildcard certificate for `*.local.mlsg.net`, allowing clients to use HTTPS without routing internal requests through the public infrastructure.
 
 ---
 
@@ -226,9 +187,9 @@ The architecture uses several logical boundaries:
 
 The primary network contains normal household devices and core infrastructure.
 
-### Lab Network
+### Network Segmentation
 
-The lab network provides separation for experimental infrastructure and networking changes.
+VLANs and OPNsense firewall rules are planned.
 
 ### Cloud Infrastructure
 
@@ -260,19 +221,14 @@ Different components are responsible for different parts of the infrastructure:
 
 * Compute -> Proxmox
 * Storage -> NAS
-* Lab routing/firewalling → OPNsense
+* Routing and firewalling → OPNsense
 * DNS -> Technitium
 * Reverse proxying → Nginx Proxy Manager
 * Public DNS -> Cloudflare
-* Private DNS ->
+* Internal DNS -> Technitium
 * Private connectivity -> Tailscale
 * Public ingress -> Oracle Cloud Always-Free Tier Instance
 
-### Experimentation
-
-The dedicated lab environment provides a place to experiment with networking and infrastructure without making the primary home environment the testing ground.
-
----
 
 ## Architectural Considerations
 
@@ -292,9 +248,6 @@ It also provides a practical environment for learning systems administration and
 
 The cloud environment provides a public-facing ingress layer while allowing the actual applications and data to remain on-premises. Overall, the main purpose of the cloud instance is for me to bypass my lack of static public IPV4 problem with Starlink.
 
-### Why separate the lab network?
-
-The separate lab environment allows networking and firewall configurations to be changed and tested without unnecessarily disrupting the primary home network.
 
 ---
 
